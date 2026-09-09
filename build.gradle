@@ -1,1 +1,12 @@
-
+tasks.register('buildFrontendAndCopyOutputToBackend') {
+    dependsOn ':frontend:npmRunBuild'
+    doFirst {
+        delete "${project(':backend').projectDir}/src/main/resources/static"
+    }
+    doLast {
+        copy {
+            from file("${project(':frontend').projectDir}/dist")
+            into file("${project(':backend').projectDir}/src/main/resources/static")
+        }
+    }
+}

@@ -1,0 +1,13 @@
+plugins {
+    id "com.github.node-gradle.node" version "7.1.0"
+}
+
+tasks.register('npmRunBuild', NpmTask) {
+    dependsOn 'npmInstall'
+    args = ['run', 'build']
+}
+
+tasks.register('npmRunDev', NpmTask) {
+    dependsOn 'npmInstall'
+    args = ['run', 'dev']
+}
